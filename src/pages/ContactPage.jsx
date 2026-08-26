@@ -18,12 +18,22 @@ export default function ContactPage() {
 
   const handleSubmit = (event) => {
     event.preventDefault()
+    const whatsappMessage = [
+      'New SEO inquiry from portfolio website',
+      `Name: ${formData.name}`,
+      `Email: ${formData.email}`,
+      `Phone: ${formData.phone}`,
+      `Project Type: ${formData.projectType}`,
+      `Message: ${formData.message}`,
+    ].join('\n')
+
+    window.location.href = `sms:+919873842246?body=${encodeURIComponent(whatsappMessage)}`
     setSubmitted(true)
     setFormData({ name: '', email: '', phone: '', projectType: '', message: '' })
   }
 
   return (
-    <section className="content-section">
+    <section className="content-section contact-section">
       <div className="section-heading">
         <p className="eyebrow">Contact</p>
         <h2>Contact Us</h2>
@@ -33,7 +43,7 @@ export default function ContactPage() {
         <div className="contact-details">
           <div className="detail-row">
             <span>Phone</span>
-            <strong>+91 9878342246</strong>
+            <strong>+91 9873842246</strong>
           </div>
           <div className="detail-row">
             <span>Email</span>
@@ -102,7 +112,7 @@ export default function ContactPage() {
             />
           </label>
           <button type="submit" className="btn btn-primary">
-            Submit
+            Send Message
           </button>
           {submitted ? <p className="success-message">Thanks! Your form has been submitted.</p> : null}
         </form>

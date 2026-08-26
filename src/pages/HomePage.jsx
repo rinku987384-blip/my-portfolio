@@ -1,4 +1,5 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import fallbackHeroImage from '../assets/hero.png'
 
 const services = [
   {
@@ -25,19 +26,28 @@ const services = [
 
 const projects = [
   {
-    title: 'Local Business Growth Project',
-    description:
-      'Improved search discoverability and local ranking visibility for a service-based business website.',
+    title: 'TechvisionIndia.com',
+    url: 'https://techvisionindia.com',
+    location: 'India',
+    description: 'Technical SEO, On-Page SEO, Schema, GSC, Sitemap',
   },
   {
-    title: 'Website Optimization Campaign',
-    description:
-      'Enhanced on-page structure, technical SEO, and keyword targeting for better organic reach.',
+    title: 'TravelTurtle.world',
+    url: 'https://travelturtle.world',
+    location: 'India',
+    description: 'On-Page SEO, Content, Keyword Research',
   },
   {
-    title: 'Content SEO Strategy',
-    description:
-      'Developed content alignment and optimization plans that helped increase search relevance and traffic quality.',
+    title: 'ERCOTravels.com',
+    url: 'https://ercotravels.com',
+    location: 'India',
+    description: 'Keyword Research, On-Page SEO',
+  },
+  {
+    title: 'SmartBizUtility.com',
+    url: 'https://smartbizutility.com',
+    location: 'United Kingdom',
+    description: 'On-Page SEO, Content & Technical SEO',
   },
 ]
 
@@ -48,6 +58,24 @@ const experience = [
     duration: '1.7 Years +',
     summary:
       'Handled on-page, off-page, technical SEO, keyword research, backlink strategies, GMB optimization, and website performance improvement.',
+  },
+]
+
+const heroSlides = [
+  {
+    label: 'Technical SEO',
+    detail: 'Build a stronger search foundation.',
+    image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=900&q=85',
+  },
+  {
+    label: 'Keyword Research',
+    detail: 'Find the opportunities that matter.',
+    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=900&q=85',
+  },
+  {
+    label: 'Website Growth',
+    detail: 'Turn visibility into steady progress.',
+    image: 'https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=900&q=85',
   },
 ]
 
@@ -71,6 +99,15 @@ export default function HomePage() {
   })
 
   const [submitted, setSubmitted] = useState(false)
+  const [activeSlide, setActiveSlide] = useState(0)
+
+  useEffect(() => {
+    const slideTimer = setInterval(() => {
+      setActiveSlide((current) => (current + 1) % heroSlides.length)
+    }, 4200)
+
+    return () => clearInterval(slideTimer)
+  }, [])
 
   const handleChange = (event) => {
     const { name, value } = event.target
@@ -79,6 +116,15 @@ export default function HomePage() {
 
   const handleSubmit = (event) => {
     event.preventDefault()
+    const whatsappMessage = [
+      'New SEO inquiry from portfolio website',
+      `Name: ${formData.name}`,
+      `Email: ${formData.email}`,
+      `Phone: ${formData.phone}`,
+      `Message: ${formData.message}`,
+    ].join('\n')
+
+    window.location.href = `sms:+919873842246?body=${encodeURIComponent(whatsappMessage)}`
     setSubmitted(true)
     setFormData({ name: '', email: '', phone: '', message: '' })
   }
@@ -86,7 +132,7 @@ export default function HomePage() {
   return (
     <div className="home-page">
       <section className="hero-section">
-        <div>
+        <div className="hero-copy">
           <p className="eyebrow">Freelance SEO Specialist</p>
           <h1>Helping businesses rank higher and grow online.</h1>
           <p className="hero-text">
@@ -105,17 +151,30 @@ export default function HomePage() {
         </div>
 
         <div className="hero-card-box">
-          <div className="mini-stat">
-            <strong>1.7+</strong>
-            <span>Years of SEO Work</span>
+          <div className="hero-slide">
+            <img
+              src={heroSlides[activeSlide].image}
+              alt={`${heroSlides[activeSlide].label} visual`}
+              onError={(event) => {
+                event.currentTarget.src = fallbackHeroImage
+              }}
+            />
+            <div className="hero-slide-copy">
+              <span>0{activeSlide + 1} / 03</span>
+              <strong>{heroSlides[activeSlide].label}</strong>
+              <p>{heroSlides[activeSlide].detail}</p>
+            </div>
           </div>
-          <div className="mini-stat">
-            <strong>100%</strong>
-            <span>Growth-focused mindset</span>
-          </div>
-          <div className="mini-stat">
-            <strong>Open</strong>
-            <span>For freelance projects</span>
+          <div className="hero-slider-controls" aria-label="Hero slides">
+            {heroSlides.map((slide, index) => (
+              <button
+                key={slide.label}
+                type="button"
+                className={index === activeSlide ? 'active' : ''}
+                onClick={() => setActiveSlide(index)}
+                aria-label={`Show ${slide.label} slide`}
+              />
+            ))}
           </div>
         </div>
       </section>
@@ -186,10 +245,15 @@ export default function HomePage() {
           <p className="eyebrow">Projects</p>
           <h2>Selected Work Areas</h2>
         </div>
-        <div className="card-grid">
+        <div className="card-grid projects-grid">
           {projects.map((project) => (
             <article key={project.title} className="info-card">
-              <h3>{project.title}</h3>
+              <h3>
+                <a className="project-link" href={project.url} target="_blank" rel="noreferrer">
+                  {project.title}
+                </a>
+              </h3>
+              {project.location ? <span className="project-location">{project.location}</span> : null}
               <p>{project.description}</p>
             </article>
           ))}
@@ -206,7 +270,7 @@ export default function HomePage() {
           <div className="contact-details">
             <div className="detail-row">
               <span>Phone</span>
-              <strong>+91 9878342246</strong>
+              <strong>+91 9873842246</strong>
             </div>
             <div className="detail-row">
               <span>Email</span>
