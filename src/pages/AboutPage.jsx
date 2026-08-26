@@ -6,7 +6,7 @@ export default function AboutPage() {
         <h2>About Me</h2>
       </div>
       <p>
-        I am a dedicated SEO Executive with 1.7 years of hands-on professional experience,
+        I am Rinku Bharti, a dedicated SEO Executive with 2 years of hands-on professional experience,
         including internship exposure in Search Engine Optimization. I focus on achieving
         better search visibility through technical improvements, keyword strategy,
         optimized content structure, and reliable backlink execution.

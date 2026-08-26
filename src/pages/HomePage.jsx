@@ -55,7 +55,7 @@ const experience = [
   {
     role: 'SEO Executive',
     company: 'JRS Techvision Pvt. Ltd.',
-    duration: '1.7 Years +',
+    duration: '2 Years +',
     summary:
       'Handled on-page, off-page, technical SEO, keyword research, backlink strategies, GMB optimization, and website performance improvement.',
   },
@@ -136,7 +136,7 @@ export default function HomePage() {
           <p className="eyebrow">Freelance SEO Specialist</p>
           <h1>Helping businesses rank higher and grow online.</h1>
           <p className="hero-text">
-            I’m Rinku, an SEO Executive with practical experience in on-page,
+            I’m Rinku Bharti, an SEO Executive with practical experience in on-page,
             off-page, technical SEO, keyword research, and website optimization. I help
             businesses become more visible, more trusted, and more discoverable on search.
           </p>
