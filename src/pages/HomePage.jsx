@@ -116,7 +116,7 @@ export default function HomePage() {
 
   const handleSubmit = (event) => {
     event.preventDefault()
-    const whatsappMessage = [
+    const inquiryMessage = [
       'New SEO inquiry from portfolio website',
       `Name: ${formData.name}`,
       `Email: ${formData.email}`,
@@ -124,7 +124,9 @@ export default function HomePage() {
       `Message: ${formData.message}`,
     ].join('\n')
 
-    window.location.href = `sms:+919873842246?body=${encodeURIComponent(whatsappMessage)}`
+    const subject = `New SEO inquiry from ${formData.name}`
+    window.location.href =
+      `mailto:rinku987384@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(inquiryMessage)}`
     setSubmitted(true)
     setFormData({ name: '', email: '', phone: '', message: '' })
   }
@@ -274,7 +276,7 @@ export default function HomePage() {
             </div>
             <div className="detail-row">
               <span>Email</span>
-              <strong>rinkubharti9873@gmail.com</strong>
+              <strong>rinku987384@gmail.com</strong>
             </div>
             <div className="detail-row">
               <span>Location</span>
