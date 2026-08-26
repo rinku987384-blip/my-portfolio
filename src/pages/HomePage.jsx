@@ -99,6 +99,8 @@ export default function HomePage() {
   })
 
   const [submitted, setSubmitted] = useState(false)
+  const [submitError, setSubmitError] = useState('')
+  const [isSubmitting, setIsSubmitting] = useState(false)
   const [activeSlide, setActiveSlide] = useState(0)
 
   useEffect(() => {
@@ -114,21 +116,37 @@ export default function HomePage() {
     setFormData((current) => ({ ...current, [name]: value }))
   }
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault()
-    const inquiryMessage = [
-      'New SEO inquiry from portfolio website',
-      `Name: ${formData.name}`,
-      `Email: ${formData.email}`,
-      `Phone: ${formData.phone}`,
-      `Message: ${formData.message}`,
-    ].join('\n')
+    setIsSubmitting(true)
+    setSubmitted(false)
+    setSubmitError('')
 
-    const subject = `New SEO inquiry from ${formData.name}`
-    window.location.href =
-      `mailto:rinku987384@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(inquiryMessage)}`
-    setSubmitted(true)
-    setFormData({ name: '', email: '', phone: '', message: '' })
+    try {
+      const response = await fetch('https://formsubmit.co/ajax/rinku987384@gmail.com', {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          ...formData,
+          _subject: `New SEO inquiry from ${formData.name}`,
+          _template: 'table',
+        }),
+      })
+
+      if (!response.ok) {
+        throw new Error('Unable to send inquiry')
+      }
+
+      setSubmitted(true)
+      setFormData({ name: '', email: '', phone: '', message: '' })
+    } catch {
+      setSubmitError('Message send nahi hua. Please try again.')
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   return (
@@ -329,10 +347,11 @@ export default function HomePage() {
                 required
               />
             </label>
-            <button type="submit" className="btn btn-primary">
-              Send Message
+            <button type="submit" className="btn btn-primary" disabled={isSubmitting}>
+              {isSubmitting ? 'Sending...' : 'Send Message'}
             </button>
             {submitted ? <p className="success-message">Thank you! Your message has been recorded.</p> : null}
+            {submitError ? <p className="error-message">{submitError}</p> : null}
           </form>
         </div>
       </section>
