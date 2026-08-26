@@ -136,7 +136,7 @@ export default function HomePage() {
           <p className="eyebrow">Freelance SEO Specialist</p>
           <h1>Helping businesses rank higher and grow online.</h1>
           <p className="hero-text">
-            I’m Rinku Bharti, an SEO Executive with practical experience in on-page,
+            I’m Rinku, an SEO Executive with practical experience in on-page,
             off-page, technical SEO, keyword research, and website optimization. I help
             businesses become more visible, more trusted, and more discoverable on search.
           </p>
