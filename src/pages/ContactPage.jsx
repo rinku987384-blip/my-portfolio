@@ -18,16 +18,23 @@ export default function ContactPage() {
 
   const handleSubmit = (event) => {
     event.preventDefault()
-    const whatsappMessage = [
-      'New SEO inquiry from portfolio website',
-      `Name: ${formData.name}`,
-      `Email: ${formData.email}`,
-      `Phone: ${formData.phone}`,
-      `Project Type: ${formData.projectType}`,
-      `Message: ${formData.message}`,
-    ].join('\n')
 
-    window.location.href = `sms:+919873842246?body=${encodeURIComponent(whatsappMessage)}`
+    const subject = encodeURIComponent(`New SEO inquiry from ${formData.name}`)
+    const body = encodeURIComponent(
+      [
+        'New SEO inquiry from portfolio website',
+        '',
+        `Name: ${formData.name}`,
+        `Email: ${formData.email}`,
+        `Phone: ${formData.phone}`,
+        `Project Type: ${formData.projectType}`,
+        '',
+        'Message:',
+        formData.message,
+      ].join('\n')
+    )
+
+    window.location.href = `mailto:rinku987384@gmail.com?subject=${subject}&body=${body}`
     setSubmitted(true)
     setFormData({ name: '', email: '', phone: '', projectType: '', message: '' })
   }
@@ -47,7 +54,7 @@ export default function ContactPage() {
           </div>
           <div className="detail-row">
             <span>Email</span>
-            <strong>rinkubharti9873@gmail.com</strong>
+            <strong>rinku987384@gmail.com</strong>
           </div>
           <div className="detail-row">
             <span>Location</span>

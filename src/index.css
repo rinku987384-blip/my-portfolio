@@ -324,6 +324,38 @@ h1 {
   margin-top: 24px;
 }
 
+.hero-actions .btn-primary,
+.hero-actions .btn-secondary {
+  position: relative;
+  isolation: isolate;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.hero-actions .btn-primary::before,
+.hero-actions .btn-secondary::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  transform: translate(-50%, -50%);
+  transition: width 0.25s ease, height 0.25s ease, background 0.25s ease;
+  z-index: -1;
+}
+
+.hero-actions .btn-primary:hover::before,
+.hero-actions .btn-secondary:hover::before {
+  width: 130%;
+  height: 130%;
+  background: rgba(255, 255, 255, 0.24);
+}
+
 h2 {
   font-size: 1.8rem;
   margin-bottom: 14px;
@@ -416,16 +448,21 @@ h2 {
   padding: 12px 18px;
   border-radius: 999px;
   font-weight: 800;
+  border: 0;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
 }
 
-.btn-primary {
+.btn-primary,
+.btn-secondary {
   background: #ffffff;
   color: #123d74;
+  box-shadow: 0 8px 18px rgba(255, 255, 255, 0.12);
 }
 
-.btn-secondary {
-  border: 1px solid rgba(255, 255, 255, 0.4);
-  color: #ffffff;
+.btn-primary:hover,
+.btn-secondary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 20px rgba(255, 255, 255, 0.14);
 }
 
 .feature-grid,

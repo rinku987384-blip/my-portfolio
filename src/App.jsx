@@ -50,7 +50,7 @@ function Footer() {
         <SocialIcon label="Instagram" href="https://www.instagram.com/digitalrinku5911">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7.2 2.8h9.6A4.4 4.4 0 0 1 21.2 7v10a4.4 4.4 0 0 1-4.4 4.2H7.2A4.4 4.4 0 0 1 2.8 17V7a4.4 4.4 0 0 1 4.4-4.2Zm0 2A2.4 2.4 0 0 0 4.8 7v10a2.4 2.4 0 0 0 2.4 2.2h9.6a2.4 2.4 0 0 0 2.4-2.2V7a2.4 2.4 0 0 0-2.4-2.2H7.2Zm4.8 2.4A4.8 4.8 0 1 1 7.2 12 4.8 4.8 0 0 1 12 7.2Zm0 2A2.8 2.8 0 1 0 14.8 12 2.8 2.8 0 0 0 12 9.2Zm5-2.6a1.1 1.1 0 1 1-1.1 1.1A1.1 1.1 0 0 1 17 6.6Z" /></svg>
         </SocialIcon>
-        <SocialIcon label="Email" href="mailto:digitalrinku5911@gmail.com">
+        <SocialIcon label="Email" href="mailto:rinku987384@gmail.com">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 5.5h17A1.5 1.5 0 0 1 22 7v10a1.5 1.5 0 0 1-1.5 1.5h-17A1.5 1.5 0 0 1 2 17V7a1.5 1.5 0 0 1 1.5-1.5Zm.5 2.2v.5l8 5.1 8-5.1v-.5H4Zm16 2.9-7.5 4.8a.9.9 0 0 1-1 0L4 10.6V17h16v-6.4Z" /></svg>
         </SocialIcon>
       </div>
